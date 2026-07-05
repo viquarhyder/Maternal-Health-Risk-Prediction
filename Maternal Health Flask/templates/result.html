@@ -1,0 +1,188 @@
+{% extends "base.html" %}
+
+{% block title %}
+Prediction Result | Maternal Health Risk Prediction
+{% endblock %}
+
+{% block content %}
+
+<div class="row align-items-center">
+
+    <!-- Left Side -->
+
+    <div class="col-lg-5 text-center">
+
+        <img src="{{ url_for('static', filename='images/result.png') }}"
+             class="img-fluid result-image"
+             alt="Prediction Result">
+
+        <h3 class="mt-4 text-primary fw-bold">
+
+            Prediction Completed
+
+        </h3>
+
+        <p class="text-muted">
+
+            The Artificial Neural Network has successfully analyzed
+            the patient information and predicted the maternal health
+            risk level.
+
+        </p>
+
+    </div>
+
+
+    <!-- Right Side -->
+
+    <div class="col-lg-7">
+
+        <div class="card shadow-lg border-0 rounded-4">
+
+            <div class="card-header bg-primary text-white text-center">
+
+                <h2>
+
+                    <i class="bi bi-clipboard2-pulse-fill"></i>
+
+                    Prediction Result
+
+                </h2>
+
+            </div>
+
+            <div class="card-body">
+
+                <!-- Prediction Badge -->
+
+                <div class="text-center mb-4">
+
+                    <h5>
+
+                        Predicted Risk Level
+
+                    </h5>
+
+                    <span class="badge bg-{{ risk_level_class }} fs-3 p-3">
+
+                        {{ prediction }}
+
+                    </span>
+
+                </div>
+
+                <!-- Recommendation -->
+
+                <div class="alert alert-{{ risk_level_class }}">
+
+                    <h5>
+
+                        <i class="bi bi-info-circle-fill"></i>
+
+                        Recommendation
+
+                    </h5>
+
+                    {{ risk_message }}
+
+                </div>
+
+
+                <!-- Patient Information -->
+
+                <h4 class="mt-4">
+
+                    Patient Information
+
+                </h4>
+
+                <table class="table table-bordered table-hover">
+
+                    <tbody>
+
+                        <tr>
+
+                            <th>Age</th>
+
+                            <td>{{ input_data.Age }}</td>
+
+                        </tr>
+
+                        <tr>
+
+                            <th>Systolic BP</th>
+
+                            <td>{{ input_data.SystolicBP }}</td>
+
+                        </tr>
+
+                        <tr>
+
+                            <th>Diastolic BP</th>
+
+                            <td>{{ input_data.DiastolicBP }}</td>
+
+                        </tr>
+
+                        <tr>
+
+                            <th>Blood Sugar</th>
+
+                            <td>{{ input_data.BS }}</td>
+
+                        </tr>
+
+                        <tr>
+
+                            <th>Body Temperature</th>
+
+                            <td>{{ input_data.BodyTemp }}</td>
+
+                        </tr>
+
+                        <tr>
+
+                            <th>Heart Rate</th>
+
+                            <td>{{ input_data.HeartRate }}</td>
+
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+
+                <!-- Buttons -->
+
+                <div class="d-grid gap-2 mt-4">
+
+                    <a href="/predict"
+                       class="btn btn-primary btn-lg">
+
+                        <i class="bi bi-arrow-repeat"></i>
+
+                        Predict Again
+
+                    </a>
+
+                    <a href="/"
+                       class="btn btn-outline-secondary">
+
+                        <i class="bi bi-house-fill"></i>
+
+                        Back to Home
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

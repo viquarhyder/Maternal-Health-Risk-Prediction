@@ -1,0 +1,1263 @@
+/* ==========================================================
+   Maternal Health Risk Prediction
+   Flask Application
+   Developed By : Mohammed Viquar Hyder
+==========================================================*/
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+/* ==========================================================
+   Global
+==========================================================*/
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+
+    scroll-behavior:smooth;
+
+}
+
+body{
+
+    font-family:'Poppins',sans-serif;
+
+    background:#f4f8fc;
+
+    color:#333;
+
+    overflow-x:hidden;
+
+}
+
+/* ==========================================================
+   Links
+==========================================================*/
+
+a{
+
+    text-decoration:none;
+
+}
+
+a:hover{
+
+    text-decoration:none;
+
+}
+
+/* ==========================================================
+   Navbar
+==========================================================*/
+
+.navbar{
+
+    background:linear-gradient(
+        90deg,
+        #0d6efd,
+        #4ea8ff
+    );
+
+    box-shadow:0 10px 25px rgba(0,0,0,.12);
+
+    padding:15px 0;
+
+}
+
+.navbar-brand{
+
+    font-size:28px;
+
+    font-weight:700;
+
+    color:white !important;
+
+}
+
+.navbar-brand i{
+
+    margin-right:8px;
+
+}
+
+.nav-link{
+
+    color:white !important;
+
+    font-size:17px;
+
+    margin-left:20px;
+
+    transition:.3s;
+
+}
+
+.nav-link:hover{
+
+    color:#ffe082 !important;
+
+}
+
+/* ==========================================================
+   Hero Section
+==========================================================*/
+
+.hero-image{
+
+    max-width:95%;
+
+    animation:float 5s ease-in-out infinite;
+
+}
+
+.prediction-image{
+
+    max-width:90%;
+
+}
+
+.result-image{
+
+    max-width:90%;
+
+}
+
+/* ==========================================================
+   Cards
+==========================================================*/
+
+.card{
+
+    border:none;
+
+    border-radius:20px;
+
+    transition:.4s;
+
+    overflow:hidden;
+
+}
+
+.card:hover{
+
+    transform:translateY(-8px);
+
+    box-shadow:0 20px 40px rgba(0,0,0,.15);
+
+}
+
+.card-header{
+
+    border:none;
+
+    padding:20px;
+
+}
+
+.card-body{
+
+    padding:30px;
+
+}
+
+/* ==========================================================
+   Buttons
+==========================================================*/
+
+.btn{
+
+    border-radius:12px;
+
+    font-weight:600;
+
+    transition:.3s;
+
+}
+
+.btn-primary{
+
+    background:#0d6efd;
+
+    border:none;
+
+}
+
+.btn-primary:hover{
+
+    background:#0b5ed7;
+
+    transform:translateY(-2px);
+
+    box-shadow:0 10px 20px rgba(13,110,253,.35);
+
+}
+
+.btn-outline-secondary{
+
+    border-radius:12px;
+
+}
+
+/* ==========================================================
+   Forms
+==========================================================*/
+
+.form-label{
+
+    font-weight:600;
+
+    margin-bottom:8px;
+
+}
+
+.form-control{
+
+    border-radius:12px;
+
+    border:1px solid #dce6f1;
+
+    padding:12px 16px;
+
+    transition:.3s;
+
+}
+
+.form-control:focus{
+
+    border-color:#0d6efd;
+
+    box-shadow:0 0 0 .2rem rgba(13,110,253,.2);
+
+}
+
+/* ==========================================================
+   Tables
+==========================================================*/
+
+.table{
+
+    border-radius:12px;
+
+    overflow:hidden;
+
+}
+
+.table th{
+
+    width:40%;
+
+    background:#eef5ff;
+
+}
+
+.table td{
+
+    background:white;
+
+}
+
+/* ==========================================================
+   Alerts
+==========================================================*/
+
+.alert{
+
+    border-radius:15px;
+
+    border:none;
+
+}
+
+/* ==========================================================
+   Badges
+==========================================================*/
+
+.badge{
+
+    border-radius:15px;
+
+    font-weight:600;
+
+    letter-spacing:.5px;
+
+}
+
+/* ==========================================================
+   Footer
+==========================================================*/
+
+footer{
+
+    background:#0d6efd;
+
+    color:white;
+
+    margin-top:80px;
+
+    padding:25px 0;
+
+}
+
+footer small{
+
+    font-size:15px;
+
+}
+
+/* ==========================================================
+   Animation
+==========================================================*/
+
+@keyframes float{
+
+    0%{
+
+        transform:translateY(0);
+
+    }
+
+    50%{
+
+        transform:translateY(-12px);
+
+    }
+
+    100%{
+
+        transform:translateY(0);
+
+    }
+
+}
+
+/* ==========================================================
+   Hero Section
+==========================================================*/
+
+.display-5{
+
+    color:#0d6efd;
+
+    font-weight:700;
+
+}
+
+.lead{
+
+    font-size:18px;
+
+    color:#555;
+
+    line-height:1.8;
+
+}
+
+/* ==========================================================
+   Section Headings
+==========================================================*/
+
+h1,h2,h3,h4,h5{
+
+    font-weight:700;
+
+}
+
+.text-primary{
+
+    color:#0d6efd !important;
+
+}
+
+/* ==========================================================
+   Card Icons
+==========================================================*/
+
+.card i{
+
+    transition:.4s;
+
+}
+
+.card:hover i{
+
+    transform:scale(1.15);
+
+}
+
+/* ==========================================================
+   Prediction Form Card
+==========================================================*/
+
+.card.shadow-lg{
+
+    background:white;
+
+    border-radius:20px;
+
+    box-shadow:0 20px 40px rgba(0,0,0,.08)!important;
+
+}
+
+/* ==========================================================
+   Form Inputs
+==========================================================*/
+
+input[type="number"]{
+
+    height:50px;
+
+}
+
+.form-control:hover{
+
+    border-color:#4ea8ff;
+
+}
+
+.form-control::placeholder{
+
+    color:#999;
+
+}
+
+/* ==========================================================
+   Buttons
+==========================================================*/
+
+.btn-lg{
+
+    padding:14px 30px;
+
+    font-size:18px;
+
+}
+
+.btn-primary i{
+
+    margin-right:8px;
+
+}
+
+/* ==========================================================
+   Prediction Badge
+==========================================================*/
+
+.badge{
+
+    min-width:220px;
+
+    display:inline-block;
+
+    text-transform:uppercase;
+
+    letter-spacing:1px;
+
+    box-shadow:0 8px 20px rgba(0,0,0,.12);
+
+}
+
+/* ==========================================================
+   Risk Colors
+==========================================================*/
+
+.bg-success{
+
+    background:#28a745!important;
+
+}
+
+.bg-warning{
+
+    background:#ff9800!important;
+
+    color:white!important;
+
+}
+
+.bg-danger{
+
+    background:#dc3545!important;
+
+}
+
+.bg-secondary{
+
+    background:#6c757d!important;
+
+}
+
+/* ==========================================================
+   Alerts
+==========================================================*/
+
+.alert-success{
+
+    background:#d4edda;
+
+    color:#155724;
+
+}
+
+.alert-warning{
+
+    background:#fff3cd;
+
+    color:#856404;
+
+}
+
+.alert-danger{
+
+    background:#f8d7da;
+
+    color:#721c24;
+
+}
+
+/* ==========================================================
+   Tables
+==========================================================*/
+
+.table{
+
+    margin-top:20px;
+
+}
+
+.table th{
+
+    font-weight:600;
+
+}
+
+.table-hover tbody tr:hover{
+
+    background:#eef5ff;
+
+}
+
+/* ==========================================================
+   Images
+==========================================================*/
+
+.hero-image,
+.prediction-image,
+.result-image{
+
+    transition:.4s;
+
+}
+
+.hero-image:hover,
+.prediction-image:hover,
+.result-image:hover{
+
+    transform:scale(1.03);
+
+}
+
+/* ==========================================================
+   Workflow Cards
+==========================================================*/
+
+.shadow-sm{
+
+    border-radius:18px;
+
+    transition:.35s;
+
+}
+
+.shadow-sm:hover{
+
+    transform:translateY(-6px);
+
+    box-shadow:0 15px 35px rgba(0,0,0,.12)!important;
+
+}
+
+/* ==========================================================
+   Horizontal Line
+==========================================================*/
+
+hr{
+
+    opacity:.12;
+
+}
+
+/* ==========================================================
+   Disclaimer
+==========================================================*/
+
+.alert-warning{
+
+    border-left:6px solid orange;
+
+}
+
+/* ==========================================================
+   Footer
+==========================================================*/
+
+footer{
+
+    margin-top:100px;
+
+}
+
+footer a{
+
+    color:white;
+
+}
+
+footer a:hover{
+
+    color:#ffe082;
+
+}
+
+/* ==========================================================
+   Loading Button
+==========================================================*/
+
+button:disabled{
+
+    cursor:not-allowed;
+
+    opacity:.8;
+
+}
+
+/* ==========================================================
+   Smooth Animation
+==========================================================*/
+
+.card,
+.btn,
+.form-control,
+img{
+
+    transition:all .35s ease;
+
+}
+
+/* ==========================================================
+   Glassmorphism
+==========================================================*/
+
+.glass-card{
+
+    background:rgba(255,255,255,.70);
+
+    backdrop-filter:blur(14px);
+
+    border:1px solid rgba(255,255,255,.25);
+
+    border-radius:20px;
+
+}
+
+
+/* ==========================================================
+   Gradient Background
+==========================================================*/
+
+.gradient-bg{
+
+    background:linear-gradient(
+        135deg,
+        #e8f4ff,
+        #f8fbff,
+        #eef8ff
+    );
+
+}
+
+
+/* ==========================================================
+   Section Padding
+==========================================================*/
+
+section{
+
+    padding:70px 0;
+
+}
+
+
+/* ==========================================================
+   Card Hover Effect
+==========================================================*/
+
+.card{
+
+    cursor:pointer;
+
+}
+
+.card:hover{
+
+    transform:translateY(-10px);
+
+}
+
+
+/* ==========================================================
+   Button Animation
+==========================================================*/
+
+.btn{
+
+    overflow:hidden;
+
+    position:relative;
+
+}
+
+.btn::after{
+
+    content:"";
+
+    position:absolute;
+
+    top:0;
+
+    left:-100%;
+
+    width:100%;
+
+    height:100%;
+
+    background:rgba(255,255,255,.20);
+
+    transition:.5s;
+
+}
+
+.btn:hover::after{
+
+    left:100%;
+
+}
+
+
+/* ==========================================================
+   Icons
+==========================================================*/
+
+.bi{
+
+    transition:.3s;
+
+}
+
+.card:hover .bi{
+
+    transform:rotate(-5deg) scale(1.15);
+
+}
+
+
+/* ==========================================================
+   Prediction Badge Animation
+==========================================================*/
+
+.badge{
+
+    animation:pop .6s ease;
+
+}
+
+
+@keyframes pop{
+
+    from{
+
+        transform:scale(.6);
+
+        opacity:0;
+
+    }
+
+    to{
+
+        transform:scale(1);
+
+        opacity:1;
+
+    }
+
+}
+
+
+/* ==========================================================
+   Table Animation
+==========================================================*/
+
+.table{
+
+    animation:fadeUp .7s ease;
+
+}
+
+
+/* ==========================================================
+   Alerts
+==========================================================*/
+
+.alert{
+
+    animation:fadeUp .6s ease;
+
+}
+
+
+/* ==========================================================
+   Fade Up Animation
+==========================================================*/
+
+@keyframes fadeUp{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(30px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0);
+
+    }
+
+}
+
+
+/* ==========================================================
+   Scrollbar
+==========================================================*/
+
+::-webkit-scrollbar{
+
+    width:10px;
+
+}
+
+::-webkit-scrollbar-track{
+
+    background:#edf5ff;
+
+}
+
+::-webkit-scrollbar-thumb{
+
+    background:#0d6efd;
+
+    border-radius:20px;
+
+}
+
+::-webkit-scrollbar-thumb:hover{
+
+    background:#0056d6;
+
+}
+
+
+/* ==========================================================
+   Selection
+==========================================================*/
+
+::selection{
+
+    background:#0d6efd;
+
+    color:white;
+
+}
+
+
+/* ==========================================================
+   Utility
+==========================================================*/
+
+.rounded-20{
+
+    border-radius:20px;
+
+}
+
+.shadow-custom{
+
+    box-shadow:0 20px 40px rgba(0,0,0,.12);
+
+}
+
+.text-justify{
+
+    text-align:justify;
+
+}
+
+
+/* ==========================================================
+   Responsive
+==========================================================*/
+
+@media(max-width:992px){
+
+.hero-image,
+.prediction-image,
+.result-image{
+
+    max-width:70%;
+
+    margin-bottom:30px;
+
+}
+
+.display-5{
+
+    font-size:38px;
+
+}
+
+}
+
+
+@media(max-width:768px){
+
+.navbar-brand{
+
+    font-size:22px;
+
+}
+
+.display-5{
+
+    font-size:30px;
+
+}
+
+.card-body{
+
+    padding:20px;
+
+}
+
+.badge{
+
+    width:100%;
+
+}
+
+.btn-lg{
+
+    font-size:16px;
+
+}
+
+.table{
+
+    font-size:14px;
+
+}
+
+}
+
+
+@media(max-width:576px){
+
+.hero-image,
+.prediction-image,
+.result-image{
+
+    max-width:95%;
+
+}
+
+footer{
+
+    font-size:13px;
+
+}
+
+.display-5{
+
+    font-size:26px;
+
+}
+
+}
+
+
+/* ===========================================
+   Active Navbar
+=========================================== */
+
+.navbar .nav-link{
+
+    color:white !important;
+
+    font-weight:500;
+
+    margin-left:18px;
+
+    transition:0.3s;
+
+}
+
+.navbar .nav-link:hover{
+
+    color:#d8ecff !important;
+
+}
+
+.navbar .nav-link.active{
+
+    color:#ffffff !important;
+
+    font-weight:700;
+
+    border-bottom:3px solid white;
+
+    padding-bottom:5px;
+
+}
+
+
+/* =====================================================
+PREMIUM FEATURE CARD EFFECT
+===================================================== */
+
+.card{
+    border:none;
+    border-radius:20px;
+    overflow:hidden;
+    position:relative;
+    transition:all .45s ease;
+    background:#ffffff;
+}
+
+.card::before{
+
+    content:"";
+
+    position:absolute;
+
+    top:0;
+
+    left:-100%;
+
+    width:100%;
+
+    height:100%;
+
+    background:linear-gradient(
+        120deg,
+        transparent,
+        rgba(43,124,255,.18),
+        transparent
+    );
+
+    transition:.7s;
+
+}
+
+.card:hover::before{
+
+    left:100%;
+
+}
+
+.card:hover{
+
+    transform:
+        translateY(-18px)
+        scale(1.04);
+
+    border:2px solid #2b7cff;
+
+    background:linear-gradient(
+        135deg,
+        #ffffff,
+        #eef6ff,
+        #ffffff
+    );
+
+    box-shadow:
+        0 35px 60px rgba(43,124,255,.30),
+        0 0 35px rgba(43,124,255,.25);
+
+}
+
+/* Icon Animation */
+
+.card i{
+
+    transition:.45s;
+
+}
+
+.card:hover i{
+
+    transform:
+        scale(1.35)
+        rotate(15deg);
+
+    color:#2b7cff !important;
+
+    text-shadow:
+        0 0 18px rgba(43,124,255,.45);
+
+}
+/* Heading */
+
+.card h3,
+.card h4,
+.card h5{
+
+    transition:.35s;
+
+}
+
+.card:hover h3,
+.card:hover h4,
+.card:hover h5{
+
+    color:#2b7cff;
+
+    letter-spacing:.6px;
+
+}
+
+/* Paragraph */
+
+.card p{
+
+    transition:.35s;
+
+}
+
+.card:hover p{
+
+    color:#3b3b3b;
+
+}
+
+/* Lists */
+
+.card li{
+
+    transition:.35s;
+
+}
+
+.card:hover li{
+
+    transform:translateX(5px);
+
+}
+
+/* Cursor */
+
+.card{
+
+    cursor:pointer;
+
+}
+
+/* Statistics Cards */
+
+.card h2{
+
+    transition:.35s;
+
+}
+
+.card:hover h2{
+
+    transform:scale(1.12);
+
+}
+
+.btn-primary{
+
+    transition:.35s;
+
+}
+
+.btn-primary:hover{
+
+    transform:translateY(-4px);
+
+    box-shadow:0 15px 30px rgba(43,124,255,.35);
+
+}
+
+.hero-image,
+.prediction-image,
+.result-image,
+.doctor-image{
+
+    transition:.5s;
+
+}
+
+.hero-image:hover,
+.prediction-image:hover,
+.result-image:hover,
+.doctor-image:hover{
+
+    transform:scale(1.04);
+
+    filter:drop-shadow(0 15px 30px rgba(43,124,255,.30));
+
+}
+
+.card::after{
+
+    content:"";
+
+    position:absolute;
+
+    left:-120%;
+
+    top:0;
+
+    width:70%;
+
+    height:100%;
+
+    background:linear-gradient(
+        90deg,
+        transparent,
+        rgba(255,255,255,.65),
+        transparent
+    );
+
+    transform:skewX(-25deg);
+
+    transition:.8s;
+
+}
+
+.card:hover::after{
+
+    left:160%;
+
+}
+
+/* ==========================================================
+   End
+==========================================================*/
